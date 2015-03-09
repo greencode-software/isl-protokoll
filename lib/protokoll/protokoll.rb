@@ -14,7 +14,8 @@ module Protokoll
       options = { :pattern       => "%Y%m#####",
                   :number_symbol => "#",
                   :column        => column,
-                  :start         => 0 }
+                  :start         => 0,
+                  :save          => true }
 
       options.merge!(_options)
 
