@@ -9,9 +9,10 @@ module Protokoll
       element.counter += 1
 
       element.touch unless element.changed?
-      element.save! if element.changed?
-
-      element.save!
+      if options[:save]
+        element.save! if element.changed?
+        element.save!
+      end
 
       Formater.new.format(element.counter, options)
     end

@@ -18,9 +18,13 @@ module Protokoll
 
       options.merge!(_options)
 
-      # Defining custom method
+      # Defining custom methods
       send :define_method, "reserve_#{options[:column]}!".to_sym do
         self[column] = Counter.next(self, options)
+      end
+
+      send :define_method, "reserve_#{options[:column]}".to_sym do
+        self[column] = Counter.next(self, options.merge(save: false))
       end
 
       # Signing before_create
