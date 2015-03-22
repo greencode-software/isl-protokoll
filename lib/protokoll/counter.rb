@@ -3,8 +3,10 @@ require 'active_record'
 module Protokoll
   class Counter
     def self.next(object, options)
-      element = Models::CustomAutoIncrement.find_or_create_by(counter_model_name: object.class.to_s.underscore,
-                                                              counter_scope_model_name: options.fetch(:scope))
+      attrs = {counter_model_name: object.class.to_s.underscore}
+      attrs.merge!(counter_scope_model_name: object.send(options[:scope])) if options[:scope].present?
+
+      element = Models::CustomAutoIncrement.find_or_create_by(attrs)
 
       element.counter = options[:start] if outdated?(element, options) || element.counter == 0
       element.counter += 1
