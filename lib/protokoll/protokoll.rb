@@ -15,7 +15,8 @@ module Protokoll
                   :number_symbol => "#",
                   :column        => column,
                   :start         => 0,
-                  :save          => true }
+                  :save          => true,
+                  :scope         => nil }
 
       options.merge!(_options)
 

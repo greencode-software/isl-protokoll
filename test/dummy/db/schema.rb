@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20120222164124) do
+ActiveRecord::Schema.define(version: 20110928013630) do
 
   create_table "calls", force: :cascade do |t|
     t.string   "number"
@@ -21,7 +21,8 @@ ActiveRecord::Schema.define(version: 20120222164124) do
 
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
-    t.integer  "counter",            default: 0
+    t.string   "counter_scope_model_name"
+    t.integer  "counter",                  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
