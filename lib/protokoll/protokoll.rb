@@ -16,6 +16,7 @@ module Protokoll
                   :column        => column,
                   :start         => 0,
                   :save          => true,
+                  :on_create     => true,
                   :scope         => nil }
 
       options.merge!(_options)
@@ -32,7 +33,7 @@ module Protokoll
       # Signing before_create
       before_create do |record|
         unless record[column].present?
-          record[column] = Counter.next(self, options)
+          record[column] = Counter.next(self, options) if options[:on_create]
         end
       end
     end
